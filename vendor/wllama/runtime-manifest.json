@@ -1,0 +1,41 @@
+{
+  "package": "@wllama/wllama",
+  "version": "3.8.1",
+  "files": [
+    {
+      "file": "LICENSE",
+      "bytes": 1071,
+      "sha256": "5866e3bd7e3cbd3f7c8bea6efd8a1e7fa7cc8de68c30f428aff7c6584a0fb720"
+    },
+    {
+      "file": "LICENSE-LLAMA-CPP",
+      "bytes": 1078,
+      "sha256": "94f29bbed6a22c35b992c5c6ebf0e7c92f13b836b90f36f461c9cf2f0f1d010d"
+    },
+    {
+      "file": "PROVENANCE.md",
+      "bytes": 979,
+      "sha256": "7d78a6c2dc458d846689b8d17b4f2031a132a2489b8bbfa111744641e828a3bc"
+    },
+    {
+      "file": "compat-worker.js",
+      "bytes": 171615,
+      "sha256": "2649eeb408988841c372e54805adfa25aed5d02f850c09add78c2f3ac0f3fce1"
+    },
+    {
+      "file": "compat.wasm",
+      "bytes": 16005007,
+      "sha256": "2db3f67d0bcc19cdf8f14f129e46cab691bff898954808f8a2dc4c586eb5bb68"
+    },
+    {
+      "file": "index.js",
+      "bytes": 382633,
+      "sha256": "e5506753e41a59c11f61f2c52422045be9fc76e32a7e47f037aaad5df4ec723e"
+    },
+    {
+      "file": "main.wasm",
+      "bytes": 8763949,
+      "sha256": "551f13439366eff11e057b1b91fe46a7fdac29d56d67372d4c5f19a549dfe70c"
+    }
+  ]
+}
