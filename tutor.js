@@ -75,3 +75,6 @@ export function createTutor({onStatus = () => {}, contextProvider = () => ''} = 
     unload: async () => stop('')
   };
 }
+
+/* v3: prefer the model parts published with this site (models/manifest.json), else the pinned Hugging Face file */
+export async function coachModelURL() { try { const r = await fetch('./models/manifest.json', { method: 'HEAD', cache: 'no-store' }); if (r.ok) return './models/manifest.json'; } catch { } return DEFAULT_MODEL_URL; }
