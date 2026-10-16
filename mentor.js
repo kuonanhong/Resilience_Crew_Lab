@@ -184,8 +184,8 @@ const stepRows = {
   ['Kenal pasti dan sahkan','Baca setiap situasi di meja digital dan semak bukti sebelum menjawab. Jangan masukkan kelayakan log masuk sebenar, data peribadi atau rahsia. Terangkan alasan anda kepada pasukan.'] ]
 };
 
-export const mentorLocales = Object.freeze(Object.keys(labelRows));
-export const mentorStrings = Object.freeze(Object.fromEntries(Object.entries(labelRows).map(([code,row]) => [code,Object.freeze(Object.fromEntries(row.split('|').map((value,index) => [labelKeys[index],value])))])));
+export const mentorLocales = Object.keys(labelRows);
+export const mentorStrings = Object.assign({}, Object.fromEntries(Object.entries(labelRows).map(([code,row]) => [code,Object.freeze(Object.fromEntries(row.split('|').map((value,index) => [labelKeys[index],value])))])));
 const stepIds = ['briefing','checklist','assist','move','turn','lift','inspect','report','digital'];
 const langTags = {'zh-Hant':'zh-TW','zh-Hans':'zh-CN',en:'en-US',ja:'ja-JP',ko:'ko-KR',fr:'fr-FR',de:'de-DE',es:'es-ES',pt:'pt-BR',it:'it-IT',ar:'ar',hi:'hi-IN',id:'id-ID',vi:'vi-VN',th:'th-TH',ms:'ms-MY'};
 export function mentorLocale(value) {
@@ -278,4 +278,11 @@ export function mountMentor(container,options={}) {
   setLocale(next){if(destroyed)return;cancelSpeech();locale=mentorLocale(next);steps=createMentorSteps(locale,options.domain,options.missionTitle);status=finished?'complete':'ready';render();},
   state(){return {index,total:steps.length,step:steps[index].id,locale,status,finished};}
  };
+}
+
+/* v3: register one more interface language at run time (labels object, [[title,text],...] steps, speech tag) */
+export function registerMentorLocale(code, labels, steps, tag) {
+ if (!code || !labels) return; mentorStrings[code] = Object.freeze({ ...mentorStrings.en, ...labels });
+ if (Array.isArray(steps) && steps.length === stepRows.en.length) stepRows[code] = steps;
+ langTags[code] = tag || code; if (!mentorLocales.includes(code)) mentorLocales.push(code);
 }

@@ -22,9 +22,9 @@ const rows = {
 'ms': 'RESILIENCE|Berlatih bersama. Bertindak dengan yakin.|Utama|Misi|Peta dunia|Pasukan|Akademi|Demonstrasi|Profil|Tetapan|Bahasa|Log masuk|Log keluar|Tetamu|Teruskan sebagai tetamu|E-mel|Nama|Telefon|Pilihan|Simpan|Batal|Tutup|Kembali|Seterusnya|Sebelumnya|Cari|Semua|Udara|Darat|Laut|Digital|Asas|Lanjutan|Pakar|Mula|Jeda|Sambung|Tetap semula|Bantuan kawalan|Manual|Taklimat|Objektif|Senarai semak|Ulasan|Skor|Ketepatan|Keselamatan|Kerja berpasukan|Masa|minit|Misi selesai|Pilih misi|Pilih negara atau wilayah|Negara / wilayah|Negara dan wilayah|Bentuk muka bumi|Cuaca|Cerah|Hujan|Kabus|Malam|Cahaya matahari|Lokasi|Gunakan lokasi saya|Skrin penuh|Keluar skrin penuh|Besarkan|Kecilkan|Pengendali|Jurupandu|Pemerhati|Penyelaras|Cipta bilik|Sertai bilik|Kod bilik|Disambungkan|Terputus|Sesi setempat|Sesi awan|Hantar|Mesej|Jurulatih AI|Tanya jurulatih|Tanya tentang latihan ini…|Baca dengan suara|Hentikan suara|Kawalan|Bergerak|Pusing|Naik|Turun|Sahkan|Periksa|Catat|Kembali ke pangkalan|Sumber|Foto|Video|Buka sumber asal|Buka peta|Buka tab baharu|Muatkan media|Sedang memuatkan…|Ralat|Tiada hasil|Privasi|Terma|Ketahui lebih lanjut|Kemajuan|Latihan|Pratonton|Kesukaran|Tempoh|Peranan|misi|Sumber pembelajaran awam|Latihan rekaan tanpa data operasi langsung.|Profil setempat, bukan akaun awan yang disahkan|Perkhidmatan awan belum disediakan|Disimpan pada peranti ini|Paparan bersama|Pesawat|Kenderaan|Kapal|Meja digital|Sedia|Sedang berjalan|Dijeda|Selesai'
 };
 export const strings = Object.fromEntries(Object.entries(rows).map(([locale,row])=>{ const vals=row.split('|'); if(vals.length!==keys.length) throw new Error(`Translation length mismatch: ${locale}: ${vals.length}/${keys.length}`); return [locale,Object.fromEntries(keys.map((key,i)=>[key,vals[i]]))]; }));
-export function localeCode(input='') {const v=String(input).replace('_','-'); if(/^zh/i.test(v)) return /Hant|TW|HK|MO/i.test(v)?'zh-Hant':'zh-Hans'; return locales.find(x=>x.code.toLowerCase()===v.toLowerCase())?.code || locales.find(x=>x.code===v.split('-')[0])?.code || 'en';}
+export function localeCode(input='') {const v=String(input).replace('_','-'); if(/^zh/i.test(v)) return /Hans|CN|SG|MY/i.test(v)?'zh-Hans':'zh-Hant'; if(/^(tl|fil)\b/i.test(v)) return 'fil'; if(/^(no|nn|nb)\b/i.test(v)) return 'nb'; if(/^iw\b/i.test(v)) return 'he'; return locales.find(x=>x.code.toLowerCase()===v.toLowerCase())?.code || locales.find(x=>x.code===v.split('-')[0])?.code || 'en';}
 export function t(locale,key) {return strings[localeCode(locale)]?.[key] ?? strings.en[key] ?? key;}
-export function localized(value,locale='en') {if(value==null)return '';if(typeof value==='string')return value;return value[localeCode(locale)]??value.en??value['zh-Hant']??'';}
+export function localized(value,locale='en') {if(value==null)return '';if(typeof value==='string')return value;const c=localeCode(locale);return value[c]??EXTRA[c]?.content?.[value.en]??value.en??value['zh-Hant']??'';}
 const extraKeys='training|guide|localModel|loadModel|unloadModel|downloadModel|chooseFile|modelUrl|export|play|stop|replay|channel|check|notes|photo|localVideo|leaveRoom|host|member|copy|permissionDenied|networkError|unsupported|setupRequired|sendCode|verifyCode|verificationCode|AIReady|modelLoading|formation|teamStatus|teamAction|acknowledge|quality|device|coordinate'.split('|');
 const extraRows={
 'en':'Training|Learning guide|Local model|Load model|Unload model|Download model|Choose file|Model URL|Export|Play|Stop|Replay|Channel|Check|Notes|Photo|Local video|Leave room|Host|Member|Copy|Permission denied|Network error|Not supported|Setup required|Send code|Verify code|Verification code|AI ready|Loading model…|Formation|Team status|Team action|Acknowledge|Quality|Device|Coordinates',
@@ -108,3 +108,36 @@ const v2Labels={
  contextNotice:'提供的內容是教學摘要，不含影片逐字稿或即時資料。|提供的内容是教学摘要，不含视频逐字稿或实时资料。|The supplied context is a learning summary, not a video transcript or live data.|提供情報は学習要約で、動画の文字起こしやリアルタイム情報ではありません。|제공된 내용은 학습 요약이며 영상 대본이나 실시간 자료가 아닙니다.|Le contexte est un résumé pédagogique, sans transcription vidéo ni données en direct.|Der Kontext ist eine Lernzusammenfassung, kein Videotranskript oder Live-Datensatz.|El contexto es un resumen educativo; no contiene transcripciones ni datos en directo.|O contexto é um resumo educativo, sem transcrição de vídeo ou dados em direto.|Il contesto è un riassunto didattico, senza trascrizione video né dati dal vivo.|السياق ملخص تعليمي ولا يحتوي على تفريغ فيديو أو بيانات مباشرة.|दिया संदर्भ सीखने का सार है, वीडियो का प्रतिलेख या लाइव डेटा नहीं।|Konteks adalah ringkasan belajar, bukan transkrip video atau data langsung.|Ngữ cảnh là tóm tắt học tập, không phải bản chép video hay dữ liệu trực tiếp.|บริบทเป็นสรุปการเรียนรู้ ไม่ใช่คำถอดเสียงวิดีโอหรือข้อมูลสด|Konteks ialah ringkasan pembelajaran, bukan transkrip video atau data langsung.'
 };
 for(const [key,row] of Object.entries(v2Labels)){const values=row.split('|');if(values.length!==locales.length)throw new Error('V2 translation: '+key);locales.forEach((locale,i)=>strings[locale.code][key]=values[i]);}
+
+/* ---- v3: 24 more interface languages (40 in all). Their dictionaries load on demand from i18n/rcl/<code>.json ---- */
+export const MORE_LOCALES = [["fil", "Filipino"], ["km", "ខ្មែរ"], ["my", "မြန်မာ"], ["bn", "বাংলা"], ["mr", "मराठी"], ["ta", "தமிழ்"], ["te", "తెలుగు"], ["ur", "اردو"], ["fa", "فارسی"], ["he", "עברית"], ["tr", "Türkçe"], ["ru", "Русский"], ["uk", "Українська"], ["pl", "Polski"], ["cs", "Čeština"], ["ro", "Română"], ["hu", "Magyar"], ["el", "Ελληνικά"], ["nl", "Nederlands"], ["da", "Dansk"], ["sv", "Svenska"], ["nb", "Norsk bokmål"], ["fi", "Suomi"], ["sw", "Kiswahili"]];
+for (const [code, label] of MORE_LOCALES) { if (!locales.some(l => l.code === code)) { locales.push({ code, label, dir: ['ur', 'fa', 'he'].includes(code) ? 'rtl' : 'ltr' }); strings[code] = {}; } }
+for (const l of locales) if (['ar', 'ur', 'fa', 'he'].includes(l.code)) l.dir = 'rtl';
+export const EXTRA = {};
+export async function loadLocaleExtras(code) {
+  if (!MORE_LOCALES.some(([c]) => c === code) || EXTRA[code]) return EXTRA[code] || null;
+  try { const r = await fetch(`i18n/rcl/${code}.json`, { cache: 'no-cache' }); if (r.ok) { const d = await r.json(); Object.assign(strings[code], d.ui || {}); EXTRA[code] = d; } } catch { }
+  return EXTRA[code] || null;
+}
+const ALIAS = { tl: 'fil', no: 'nb', nn: 'nb', iw: 'he', in: 'id', zh: 'zh-Hant' };
+const TZ = { 'Asia/Taipei': 'zh-Hant', 'Asia/Hong_Kong': 'zh-Hant', 'Asia/Macau': 'zh-Hant', 'Asia/Shanghai': 'zh-Hans', 'Asia/Singapore': 'zh-Hans', 'Asia/Tokyo': 'ja', 'Asia/Seoul': 'ko', 'Asia/Ho_Chi_Minh': 'vi', 'Asia/Bangkok': 'th', 'Asia/Jakarta': 'id', 'Asia/Kuala_Lumpur': 'ms', 'Asia/Manila': 'fil', 'Asia/Phnom_Penh': 'km', 'Asia/Yangon': 'my', 'Asia/Kolkata': 'hi', 'Asia/Dhaka': 'bn', 'Asia/Karachi': 'ur', 'Asia/Tehran': 'fa', 'Asia/Jerusalem': 'he', 'Europe/Istanbul': 'tr', 'Europe/Moscow': 'ru', 'Europe/Kyiv': 'uk', 'Europe/Kiev': 'uk', 'Europe/Warsaw': 'pl', 'Europe/Prague': 'cs', 'Europe/Bucharest': 'ro', 'Europe/Budapest': 'hu', 'Europe/Athens': 'el', 'Europe/Berlin': 'de', 'Europe/Vienna': 'de', 'Europe/Zurich': 'de', 'Europe/Amsterdam': 'nl', 'Europe/Brussels': 'nl', 'Europe/Copenhagen': 'da', 'Europe/Stockholm': 'sv', 'Europe/Oslo': 'nb', 'Europe/Helsinki': 'fi', 'Europe/Paris': 'fr', 'Europe/Madrid': 'es', 'Europe/Rome': 'it', 'Europe/Lisbon': 'pt', 'America/Sao_Paulo': 'pt', 'America/Mexico_City': 'es', 'America/Bogota': 'es', 'America/Argentina/Buenos_Aires': 'es', 'Africa/Nairobi': 'sw', 'Africa/Dar_es_Salaam': 'sw', 'Africa/Cairo': 'ar', 'Asia/Riyadh': 'ar', 'Asia/Dubai': 'ar' };
+/* the viewer's language: saved choice, then ?lang=, then each browser language in order, then the time zone */
+export function pickLocale(saved) {
+  const q = new URLSearchParams(location.search).get('lang'); if (q) return localeCode(ALIAS[q] || q);
+  if (saved) return localeCode(saved);
+  for (const raw of (navigator.languages?.length ? navigator.languages : [navigator.language || 'en'])) {
+    const v = String(raw).replace('_', '-'); if (/^zh/i.test(v)) return localeCode(v);
+    const base = v.split('-')[0].toLowerCase(), code = ALIAS[base] || base;
+    if (locales.some(l => l.code === v)) return v; if (locales.some(l => l.code === code)) return code;
+  }
+  try { const tz = Intl.DateTimeFormat().resolvedOptions().timeZone; if (TZ[tz]) return TZ[tz]; } catch { }
+  return 'en';
+}
+/* Crew Lab v3 mission texts (types x real places) shared with the simulator: sim/i18n/crew/<code>.json */
+const CREW_TEXT = { en: {}, cur: {}, enLoaded: false };
+export async function loadCrewText(code) {
+  const get = async c => { try { const r = await fetch(`sim/i18n/crew/${c}.json`, { cache: 'no-cache' }); return r.ok ? await r.json() : {}; } catch { return {}; } };
+  if (!CREW_TEXT.enLoaded) { CREW_TEXT.en = await get('en'); CREW_TEXT.enLoaded = true; }
+  CREW_TEXT.cur = code === 'en' ? CREW_TEXT.en : await get(code);
+}
+export function crewText(key, vars) { let s = CREW_TEXT.cur[key] ?? CREW_TEXT.en[key] ?? key; if (vars) s = s.replace(/\{(\w+)\}/g, (m, k) => (vars[k] ?? m)); return s; }

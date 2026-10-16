@@ -1,0 +1,35 @@
+/* Resilience Crew Lab v3: mission cards with real satellite imagery + per-type pictograms, simulator overlay */
+.crew-art{position:relative;height:170px;overflow:hidden;background:var(--tc,#2d4b44);background-image:radial-gradient(circle at 20% 30%,rgba(255,255,255,.18) 0 2px,transparent 3px),radial-gradient(circle at 70% 60%,rgba(255,255,255,.12) 0 2px,transparent 3px);background-size:22px 22px,30px 30px;flex:0 0 auto}
+.crew-art.big{height:clamp(170px,26vw,250px);border-radius:12px}
+.crew-art .sat{position:absolute;width:512px;height:512px;display:grid;grid-template-columns:256px 256px;grid-template-rows:256px 256px}
+.crew-art .sat img{width:256px;height:256px;display:block;object-fit:cover}
+.crew-art::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 55%,rgba(0,0,0,.35));pointer-events:none}
+.crew-art.desk svg{width:100%;height:100%;display:block}
+.crew-art.desk::after{display:none}
+.crew-pin{position:absolute;left:50%;top:50%;width:16px;height:16px;margin:-8px 0 0 -8px;border-radius:50%;border:3px solid #fff;box-shadow:0 0 0 3px var(--tc),0 2px 8px rgba(0,0,0,.5);z-index:1}
+.crew-badge{position:absolute;left:10px;top:10px;z-index:2;display:inline-flex;padding:6px;border-radius:10px;background:#fbfaf6;box-shadow:0 2px 10px rgba(0,0,0,.28);border:2px solid var(--tc)}
+.crew-credit{position:absolute;right:6px;bottom:4px;z-index:2;font-size:9px;color:#fff;opacity:.85;text-shadow:0 1px 2px #000}
+.crew-card .card-body h3{margin:0 0 6px;font-size:16.5px;line-height:1.35}
+.crew-place{display:flex;gap:6px;align-items:flex-start;margin:0 0 6px;font-size:12.5px;color:var(--muted)}
+.crew-place .icon{width:15px;height:15px;flex:0 0 auto;margin-top:2px}
+.crew-brief{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;margin:0 0 10px;font-size:13.5px}
+.crew-card .actions{margin-top:auto}
+.tag.under{background:#e3eef6}
+[data-theme=dark] .tag.under{background:transparent}
+.crew-lead{margin:-6px 0 14px;color:var(--muted)}
+.crew-filters select{max-width:100%}
+#type-filter{min-width:min(320px,100%)}
+.crew-count{margin:-10px 0 14px;font-size:13px;color:var(--muted)}
+.crew-tip{border-left:3px solid var(--accent);padding:6px 12px;background:rgba(223,115,73,.08);border-radius:0 7px 7px 0}
+.crew-roletip{font-size:13px}
+.crew-checks{padding-left:20px;margin:6px 0 10px}.crew-checks li{margin:4px 0;font-size:13.5px}
+.sim-launch{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:18px;align-items:center;padding:16px;border:1px solid var(--line);border-radius:var(--radius);background:var(--paper,#fff);margin-bottom:16px}
+.sim-launch .telemetry{border-radius:10px;margin:10px 0}
+.sim-launch .crew-score b{font-size:20px;color:var(--accent)}
+@media(max-width:800px){.sim-launch{grid-template-columns:1fr}}
+.digital-desk .crew-art.big{margin-bottom:6px}
+/* the realistic simulator fills the whole screen (its 3D view is >=85% of the height with both hand pads right below it) */
+#sim-overlay{position:fixed;inset:0;z-index:2000;background:#0b1114}
+#sim-overlay iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block}
+body.sim-open{overflow:hidden}
+.stat strong{font-variant-numeric:tabular-nums}

@@ -127,3 +127,5 @@ export function mountPlanner(container,{locale='en',onEvent=()=>{},onQuestion=()
   container.addEventListener('click',handleClick);container.addEventListener('change',handleChange);render();
   return {destroy(){destroyed=true;container.removeEventListener('click',handleClick);container.removeEventListener('change',handleChange);container.replaceChildren();}};
 }
+
+export { SCENARIO_TEXT };
