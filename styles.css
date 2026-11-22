@@ -14,3 +14,4 @@
 
 /* Shared learning library: retain the active exercise in its original tab. */
 .nav .learning-nav{display:flex;align-items:center;gap:12px;padding:12px 14px;margin-top:6px;border-radius:8px;text-decoration:none;color:inherit;font-size:13px}.nav .learning-nav:hover{background:var(--soft,#e6eee3)}.learning-panel{margin:0 0 20px}.learning-panel .actions{gap:12px;flex-wrap:wrap}.learning-panel .hint{font-size:12px;margin:14px 0 0}.learning-citations{display:flex;flex-direction:column;gap:7px;margin-top:14px;padding-top:10px;border-top:1px solid currentColor;white-space:normal}.learning-citations a{overflow-wrap:anywhere;font-size:12px}.training-side .learning-panel h2{font-size:18px}
+.contact-row{align-items:flex-start;font-size:12px}.contact-row a{color:var(--green);font-weight:600;text-decoration:underline;text-underline-offset:3px}.contact-row a small{display:block;font-weight:400;color:var(--muted);margin-top:2px}
