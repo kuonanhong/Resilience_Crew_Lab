@@ -303,6 +303,7 @@ data/tours/unesco-1.json
 data/tours/unesco-1007.json
 data/tours/unesco-1012.json
 data/tours/unesco-1037.json
+data/tours/unesco-1066.json
 data/tours/unesco-1152.json
 data/tours/unesco-1195.json
 data/tours/unesco-120.json
@@ -310,9 +311,11 @@ data/tours/unesco-1237.json
 data/tours/unesco-1258.json
 data/tours/unesco-1264.json
 data/tours/unesco-1377.json
+data/tours/unesco-1386.json
 data/tours/unesco-1418.json
 data/tours/unesco-1430.json
 data/tours/unesco-145.json
+data/tours/unesco-202.json
 data/tours/unesco-252.json
 data/tours/unesco-274.json
 data/tours/unesco-304.json
@@ -321,12 +324,14 @@ data/tours/unesco-357.json
 data/tours/unesco-369.json
 data/tours/unesco-403.json
 data/tours/unesco-421.json
+data/tours/unesco-444.json
 data/tours/unesco-447.json
 data/tours/unesco-455.json
 data/tours/unesco-483.json
 data/tours/unesco-509.json
 data/tours/unesco-609.json
 data/tours/unesco-637.json
+data/tours/unesco-64.json
 data/tours/unesco-672.json
 data/tours/unesco-715.json
 data/tours/unesco-75.json
